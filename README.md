@@ -5,8 +5,7 @@ This application allows a scanner and keyboard to be used with a headless comput
 * avoid getting a photocopier with expensive per sheet maintenance agreements
 * unlimited flexibility in what you do with the scanned page
     + the example script converts to pdf and uploads to a windows file share
-* get a high end HP or fujitsu
-
+* use a fast high end HP or Fujitsu (or other SANE supported) scanner with a sheet feed
 
 ## Requirements
 
