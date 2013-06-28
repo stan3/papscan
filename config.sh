@@ -2,17 +2,10 @@
 # output files begin with this
 FILE_PREFIX="$(date +%d-%b-%Y_%H%M%S)"
 
-UPLOADDIR="/home/fs/scanned"
-UPLOADPERM="0660"
-UPLOADGROUP="cehmain"
-
 function upload() {
-  #chmod $UPLOADPERM $FILE_PREFIX*
-  #chgrp $UPLOADGROUP $FILE_PREFIX*
-  #mv $FILE_PREFIX* $UPLOADDIR
   local i
   for i in $FILE_PREFIX*; do
-    gnomevfs-copy "$i" smb://guest@tiber/scanned
+    smbclient //aniene/scanned -U guest% -c "put \"$i\""
   done
 }
 
@@ -120,7 +113,7 @@ case "$PRESET" in
                  --sleeptimer 5 --page-height 297 \
                  --resolution 150 \
 		 --pdfgroup group --scan-script plain
-    pdf2ps $FILE_PREFIX.pdf - | lpr
+    pdf2ps $FILE_PREFIX.pdf - | lp -
   ;;
   "t")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
