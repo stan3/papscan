@@ -91,7 +91,9 @@ function my_scanadf() {
   fi
 
   if [ "$pdfgroup" == "group" ]; then
-    renamekeepext $(pdfgroup $(ls *.pdf | sort -n | tr '\n' ' ')) $FILE_PREFIX
+    pdfgroup.py a4 "$FILE_PREFIX.pdf" $(ls *.pdf | sort -n | tr '\n' ' ')
+  elif [ "$pdfgroup" == "group2" ]; then
+    pdfgroup.py --count 2 a4 "$FILE_PREFIX.pdf" $(ls *.pdf | sort -n | tr '\n' ' ')
   else
     renamekeepext *.pdf $FILE_PREFIX
   fi
