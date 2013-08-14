@@ -23,7 +23,7 @@ export ADF_COUNT_FILE="$HOME/adf.count"
 # http://www.tldp.org/LDP/abs/html/testbranch.html
 
 case "$PRESET" in
-  "1")
+  "1") # not used
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Lineart \
         --sleeptimer 5 --page-height 297 \
         --resolution 150 \
@@ -38,17 +38,17 @@ case "$PRESET" in
     upload
   ;;
   "3")
-    my_scanadf -d $SCANDEV --source "ADF Front" --mode Lineart \
+    my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 200 \
-		 --pdfgroup single --scan-script plain
+                 --resolution 150 \
+		 --pdfgroup single --scan-script monochrome
     upload
   ;;
   "4")
-    my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Lineart \
+    my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 200 \
-                 --duplex both --pdfgroup single --scan-script plain
+                 --resolution 150 \
+                 --duplex both --pdfgroup group2 --scan-script monochrome
     upload
   ;;
   "5")
@@ -68,8 +68,10 @@ case "$PRESET" in
   "7")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 200 \
-		 --pdfgroup group --scan-script monochrome.py
+                 --resolution 150 \
+		 --pdfgroup group --scan-script monochrome
+    upload
+  ;;
     upload
   ;;
   "r")
@@ -82,8 +84,8 @@ case "$PRESET" in
   "8")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 200 \
-                 --duplex both --pdfgroup group --scan-script monochrome.py
+                 --resolution 150 \
+                 --duplex both --pdfgroup group --scan-script monochrome
     upload
   ;;
   "9" )
