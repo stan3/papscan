@@ -13,6 +13,7 @@ def chunks(l, n):
 
 
 def group(papersize, in_files, out_file):
+    # TODO: optimise pdf? pdfopt was dropped - http://bugs.ghostscript.com/show_bug.cgi?id=694099
     subprocess.call(['gs', '-q', '-dNOPAUSE', '-dBATCH', '-sDEVICE=pdfwrite',
         '-sPAPERSIZE=' + papersize, '-sOutputFile=' + out_file, '-c', 'save', 'pop',
             '-f'] + in_files)
