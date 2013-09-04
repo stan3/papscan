@@ -72,8 +72,6 @@ case "$PRESET" in
 		 --pdfgroup group --scan-script monochrome
     upload
   ;;
-    upload
-  ;;
   "r")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
