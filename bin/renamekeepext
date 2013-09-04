@@ -2,6 +2,20 @@
 
 #execheck sed dirname || exit 1
 
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ touch 1.pdf 2.pdf
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ ~/papscan/bin/renamekeepext *.pdf a
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ ls -ltr
+# total 0
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Sep  4 09:51 a.2.pdf
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Sep  4 09:51 a.1.pdf
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ touch 1.pdf
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ ~/papscan/bin/renamekeepext 1.pdf a
+# ubuntu@aniene:/tmp/tmp.Xpo30FKD8Q$ ls -ltr
+# total 0
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Sep  4 09:51 a.2.pdf
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Sep  4 09:51 a.1.pdf
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Sep  4 09:52 a.pdf
+
 function exten() {
   ext=$(echo $1 | sed -e's/^\(.*\)[.]\(.*\)$/\2/' -et -ed)
   if [ -n "$ext" ]; then
