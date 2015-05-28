@@ -116,7 +116,7 @@ case "$PRESET" in
       --sleeptimer 5 \
       --resolution 150 -e 1 \
       --scan-script plain
-    pdf2ps $FILE_PREFIX.pdf - | lpr
+    pdf2ps $FILE_PREFIX.pdf - | lp -
   ;;
   "z")
     # scan to printer
