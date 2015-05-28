@@ -81,7 +81,11 @@ function my_scanadf() {
   fi
 
 #  scanadf $opt -x 210 -y 297 -o "%d" --script-wait
-  scanadf "${opts[@]}" -x 210 -y 297 -o "%d" --script-wait
+  if [ -n "$PAPSCAN_NOSCAN" ]; then
+    touch "1.pdf"
+  else
+    scanadf "${opts[@]}" -x 210 -y 297 -o "%d" --script-wait
+  fi
 
   if [ $? != 0 ]; then
     if [ -n "$SCSI_PROBE" ]; then
