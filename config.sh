@@ -4,8 +4,11 @@ FILE_PREFIX="$(date +%d-%b-%Y_%H%M%S)"
 
 function upload() {
   local i
+  local cmd
   for i in $FILE_PREFIX*; do
-    smbclient //aniene/scanned -U guest% -c "put \"$i\""
+    cmd="put \"$i\"" 
+    [ -n "$1" ] && cmd="$cmd \"$1\""
+    smbclient //aniene/scanned -U guest% -c "$cmd"
   done
 }
 
@@ -71,6 +74,14 @@ case "$PRESET" in
                  --resolution 200 \
 		 --pdfgroup group --scan-script monochrome
     upload
+  ;;
+  "&")
+    read -p 'Enter name: ' NAME
+    my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
+                 --sleeptimer 5 --page-height 297 \
+                 --resolution 200 \
+		 --pdfgroup group --scan-script monochrome
+    upload "$NAME.pdf"
   ;;
   "r")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
