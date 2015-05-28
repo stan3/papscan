@@ -68,7 +68,7 @@ case "$PRESET" in
   "7")
     my_scanadf -d $SCANDEV --source "ADF Front" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 150 \
+                 --resolution 200 \
 		 --pdfgroup group --scan-script monochrome
     upload
   ;;
@@ -82,7 +82,7 @@ case "$PRESET" in
   "8")
     my_scanadf -d $SCANDEV --source "ADF Duplex" --mode Gray \
                  --sleeptimer 5 --page-height 297 \
-                 --resolution 150 \
+                 --resolution 200 \
                  --duplex both --pdfgroup group --scan-script monochrome
     upload
   ;;
