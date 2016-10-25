@@ -27,5 +27,24 @@ This application allows a scanner and keyboard to be used with a headless comput
 * start the application on a tty from init
     + for traditional init add something like this to /etc/inittab `c7:3:respawn:/sbin/agetty -n -l "/path/to/papscan/initscan.sh" 38400 tty7 linux`
     + with upstart copy /etc/init/tty6.conf to tty7.conf and use `exec /sbin/getty -8 38400 tty7 -n -l /path/to/papscan/initscan.sh`
-* (optional) use chvt (part of kbd) to switch to the right virtual console on boot e.g. put `/usr/bin/chvt 7` in rc.local
+    + with systemd have a `/etc/systemd/system/papscan.service` something like this
 
+			[Unit]
+			Description=papscan
+
+			[Service]
+			ExecStart=-/sbin/agetty -n -l "/path/to/papscan/initscan.sh" 38400 tty7 linux
+			Type=idle
+			Restart=always
+			TTYPath=/dev/tty7
+			TTYReset=yes
+			TTYVHangup=yes
+			TTYVTDisallocate=yes
+			KillMode=process
+			IgnoreSIGPIPE=no
+			SendSIGHUP=yes
+
+			[Install]
+			WantedBy=multi-user.target
+
+* (optional) use chvt (part of kbd) to switch to the right virtual console on boot e.g. put `/usr/bin/chvt 7` in rc.local
